@@ -9,14 +9,14 @@ const userRouter = express.Router();
 
 userRouter.post('/api/register',async (req,res)=>{
     try {
-        const {name,email,password} = req.body
+        const {name,avater,email,password} = req.body
 
         bcrypt.hash(password, 2,async function(err, hash) {
             if(err){
                 res.status(404).json({isError:true,message: err});
             }
 
-            const newUser = new UserModel({email, password:hash, name})
+            const newUser = new UserModel({email, password:hash, name, avater})
 
             await newUser.save();
             res.status(201).json({isError:false,message: "User registered successfully"});

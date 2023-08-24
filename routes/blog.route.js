@@ -70,7 +70,7 @@ blogRouter.post("/api/blogs", async (req, res) => {
 });
 
 blogRouter.put("/api/blogs/:id", async (req, res) => {
-	const id = req.query.id;
+	const id = req.params.id;
 	const updatedData = req.body;
 	try {
 		await BlogModel.findByIdAndUpdate(id, updatedData);
@@ -84,7 +84,7 @@ blogRouter.put("/api/blogs/:id", async (req, res) => {
 });
 
 blogRouter.delete("/api/blogs/:id", async (req, res) => {
-	const blogId = req.query.id;
+	const blogId = req.params.id;
 	try {
 		await BlogModel.findByIdAndDelete(blogId);
 		res.status(201).json({
